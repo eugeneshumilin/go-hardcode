@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"go-hardcode/hw2/pkg/spider"
+	"log"
 	"os"
 	"strings"
 )
@@ -20,16 +21,19 @@ func main() {
 		}
 	}
 
-	for {
-		reader := bufio.NewReader(os.Stdin)
-		fmt.Print("Найти: ")
-		req, _ := reader.ReadString('\n')
-		req = strings.Replace(req, "\n", "", -1)
+	reader := bufio.NewReader(os.Stdin)
 
+	for {
+		fmt.Print("Найти: ")
+		req, err := reader.ReadString('\n')
+		if err != nil {
+			log.Fatal(err)
+		}
+		req = strings.Replace(req, "\n", "", -1)
 		res := make(map[string]string)
 
 		for k, v := range links {
-			if strings.Contains(k, req) || strings.Contains(v, req) {
+			if strings.Contains(strings.ToLower(k), strings.ToLower(req)) || strings.Contains(strings.ToLower(v), strings.ToLower(req)) {
 				res[k] = v
 			}
 		}
