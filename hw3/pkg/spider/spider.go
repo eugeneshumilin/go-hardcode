@@ -9,8 +9,7 @@ import (
 	"golang.org/x/net/html"
 )
 
-type ScanBot struct {
-}
+type ScanBot struct{}
 
 // Scan осуществляет рекурсивный обход ссылок сайта, указанного в URL,
 // с учётом глубины перехода по ссылкам, переданной в depth.

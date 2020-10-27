@@ -18,7 +18,8 @@ func main() {
 		s := spider.ScanBot{}
 		l, err := scanLinks(&s, v, 2)
 		if err != nil {
-			log.Fatal(err)
+			fmt.Println("Ошибка...")
+			return
 		}
 
 		for u, t := range l {
