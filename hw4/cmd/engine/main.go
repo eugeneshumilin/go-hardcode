@@ -21,7 +21,7 @@ func main() {
 		l, err := scanLinks(&s, v, 2)
 		if err != nil {
 			fmt.Println(err)
-			return
+			continue
 		}
 
 		for u, t := range l {
@@ -44,7 +44,7 @@ func main() {
 		req, err := reader.ReadString('\n')
 		if err != nil {
 			fmt.Println(err)
-			return
+			continue
 		}
 
 		req = strings.TrimSuffix(req, "\r\n")

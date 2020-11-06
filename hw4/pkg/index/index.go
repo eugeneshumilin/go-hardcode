@@ -42,11 +42,11 @@ func (i *Index) FillStorage(data map[string]string) {
 
 	sort.Slice(i.Storage, func(a, b int) bool { return i.Storage[a].Id < i.Storage[b].Id })
 
-	i.createInvertedIndex()
+	createInvertedIndex(i)
 }
 
 // Создаем инвертированный индекс
-func (i *Index) createInvertedIndex() {
+func createInvertedIndex(i *Index) *Index {
 	for _, doc := range i.Storage {
 		for _, token := range tokens(doc.Title) {
 			if !exists(i.InvertedIndex[token], doc.Id) {
@@ -54,6 +54,7 @@ func (i *Index) createInvertedIndex() {
 			}
 		}
 	}
+	return i
 }
 
 // Поиск возвращает слайс строк вида "url - title"
