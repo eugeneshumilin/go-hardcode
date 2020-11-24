@@ -16,8 +16,9 @@ func main() {
 	links := make(map[string]string)
 
 	log.Println("Начинается сканирование документов...")
+
+	s := spider.ScanBot{}
 	for _, v := range urls {
-		s := spider.ScanBot{}
 		l, err := scanLinks(&s, v, 2)
 		if err != nil {
 			fmt.Println(err)
